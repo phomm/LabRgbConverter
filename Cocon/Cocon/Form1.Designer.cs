@@ -40,8 +40,9 @@
             this.Zone = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.ZoneHolder = new System.Windows.Forms.Panel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ZoneHolder = new System.Windows.Forms.Panel();
+            this.toolbtnAlgo = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zone)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -58,6 +59,7 @@
             this.toolcomboRows,
             this.toolStripLabel1,
             this.toolcomboSize,
+            this.toolbtnAlgo,
             this.toolbtnGenerate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -68,14 +70,14 @@
             // toollabelCount
             // 
             this.toollabelCount.Name = "toollabelCount";
-            this.toollabelCount.Size = new System.Drawing.Size(40, 22);
+            this.toollabelCount.Size = new System.Drawing.Size(36, 22);
             this.toollabelCount.Text = "Count";
             // 
             // toolbtnOpen
             // 
             this.toolbtnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbtnOpen.Name = "toolbtnOpen";
-            this.toolbtnOpen.Size = new System.Drawing.Size(40, 22);
+            this.toolbtnOpen.Size = new System.Drawing.Size(37, 22);
             this.toolbtnOpen.Text = "Open";
             this.toolbtnOpen.Click += new System.EventHandler(this.toolbtnOpen_Click);
             // 
@@ -83,7 +85,7 @@
             // 
             this.toolbtnMatrixDrawingMajority.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbtnMatrixDrawingMajority.Name = "toolbtnMatrixDrawingMajority";
-            this.toolbtnMatrixDrawingMajority.Size = new System.Drawing.Size(109, 22);
+            this.toolbtnMatrixDrawingMajority.Size = new System.Drawing.Size(98, 22);
             this.toolbtnMatrixDrawingMajority.Text = "RowMajorDrawing";
             this.toolbtnMatrixDrawingMajority.ToolTipText = "Vertical Fill instead of usual Horizontal";
             this.toolbtnMatrixDrawingMajority.Click += new System.EventHandler(this.toolbtnMatrixDrawingMajority_Click);
@@ -91,7 +93,7 @@
             // toollabelRows
             // 
             this.toollabelRows.Name = "toollabelRows";
-            this.toollabelRows.Size = new System.Drawing.Size(38, 22);
+            this.toollabelRows.Size = new System.Drawing.Size(37, 22);
             this.toollabelRows.Text = "Rows:";
             // 
             // toolcomboRows
@@ -116,7 +118,7 @@
             // 
             this.toolbtnGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolbtnGenerate.Name = "toolbtnGenerate";
-            this.toolbtnGenerate.Size = new System.Drawing.Size(58, 22);
+            this.toolbtnGenerate.Size = new System.Drawing.Size(56, 22);
             this.toolbtnGenerate.Text = "Generate";
             this.toolbtnGenerate.Click += new System.EventHandler(this.toolbtnGenerate_Click);
             // 
@@ -145,6 +147,11 @@
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            // 
             // ZoneHolder
             // 
             this.ZoneHolder.AutoScroll = true;
@@ -155,10 +162,13 @@
             this.ZoneHolder.Size = new System.Drawing.Size(551, 215);
             this.ZoneHolder.TabIndex = 4;
             // 
-            // toolStripStatusLabel1
+            // toolbtnAlgo
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolbtnAlgo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbtnAlgo.Name = "toolbtnAlgo";
+            this.toolbtnAlgo.Size = new System.Drawing.Size(32, 22);
+            this.toolbtnAlgo.Text = "New";
+            this.toolbtnAlgo.Click += new System.EventHandler(this.toolbtnAlgo_Click);
             // 
             // Form1
             // 
@@ -198,6 +208,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Panel ZoneHolder;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripButton toolbtnAlgo;
 
     }
 }

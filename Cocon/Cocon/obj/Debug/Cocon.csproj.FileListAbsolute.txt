@@ -7,3 +7,13 @@ f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.csproj.GenerateResour
 f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.exe
 f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.pdb
 f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\bin\Debug\ColorMine.dll
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\Cocon.exe
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\Cocon.pdb
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\ResolveAssemblyReference.cache
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\Cocon.Form1.resources
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\Cocon.Properties.Resources.resources
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\GenerateResource.read.1.tlog
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\obj\Debug\GenerateResource.write.1.tlog
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\bin\Debug\Cocon.exe
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\bin\Debug\Cocon.pdb
+C:\ph\orders\labrgbcolconv\Cocon\Cocon\Cocon\bin\Debug\ColorMine.dll
