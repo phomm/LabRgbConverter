@@ -1,0 +1,9 @@
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\bin\Debug\Cocon.exe
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\bin\Debug\Cocon.pdb
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.csprojResolveAssemblyReference.cache
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.Form1.resources
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.Properties.Resources.resources
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.csproj.GenerateResource.Cache
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.exe
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\obj\Debug\Cocon.pdb
+f:\ph\order\labrgbcolconv\conv\Cocon\Cocon\bin\Debug\ColorMine.dll
