@@ -36,13 +36,15 @@
             this.toolcomboRows = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolcomboSize = new System.Windows.Forms.ToolStripComboBox();
+            this.toolbtnAlgo = new System.Windows.Forms.ToolStripButton();
             this.toolbtnGenerate = new System.Windows.Forms.ToolStripButton();
             this.Zone = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.ZoneHolder = new System.Windows.Forms.Panel();
-            this.toolbtnAlgo = new System.Windows.Forms.ToolStripButton();
+            this.toolbtnSave = new System.Windows.Forms.ToolStripButton();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Zone)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -60,10 +62,11 @@
             this.toolStripLabel1,
             this.toolcomboSize,
             this.toolbtnAlgo,
-            this.toolbtnGenerate});
+            this.toolbtnGenerate,
+            this.toolbtnSave});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(551, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(591, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -99,6 +102,7 @@
             // toolcomboRows
             // 
             this.toolcomboRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolcomboRows.DropDownWidth = 50;
             this.toolcomboRows.Name = "toolcomboRows";
             this.toolcomboRows.Size = new System.Drawing.Size(75, 25);
             // 
@@ -114,6 +118,14 @@
             this.toolcomboSize.Name = "toolcomboSize";
             this.toolcomboSize.Size = new System.Drawing.Size(75, 25);
             // 
+            // toolbtnAlgo
+            // 
+            this.toolbtnAlgo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbtnAlgo.Name = "toolbtnAlgo";
+            this.toolbtnAlgo.Size = new System.Drawing.Size(32, 22);
+            this.toolbtnAlgo.Text = "New";
+            this.toolbtnAlgo.Click += new System.EventHandler(this.toolbtnAlgo_Click);
+            // 
             // toolbtnGenerate
             // 
             this.toolbtnGenerate.ImageTransparentColor = System.Drawing.Color.Magenta;
@@ -124,17 +136,16 @@
             // 
             // Zone
             // 
-            this.Zone.Location = new System.Drawing.Point(0, 25);
+            this.Zone.Location = new System.Drawing.Point(3, 3);
             this.Zone.Name = "Zone";
-            this.Zone.Size = new System.Drawing.Size(551, 237);
+            this.Zone.Size = new System.Drawing.Size(588, 209);
             this.Zone.TabIndex = 2;
             this.Zone.TabStop = false;
             this.Zone.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Zone_MouseMove);
             // 
             // openFileDialog1
             // 
-            this.openFileDialog1.DefaultExt = "xlsx";
-            this.openFileDialog1.Filter = "xlsx files|*.xlsx";
+            this.openFileDialog1.Filter = "txt files|*.txt|xlxs files|*.xlsx";
             this.openFileDialog1.ShowReadOnly = true;
             // 
             // statusStrip1
@@ -143,7 +154,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 240);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(551, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(591, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -159,22 +170,26 @@
             this.ZoneHolder.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ZoneHolder.Location = new System.Drawing.Point(0, 25);
             this.ZoneHolder.Name = "ZoneHolder";
-            this.ZoneHolder.Size = new System.Drawing.Size(551, 215);
+            this.ZoneHolder.Size = new System.Drawing.Size(591, 215);
             this.ZoneHolder.TabIndex = 4;
             // 
-            // toolbtnAlgo
+            // toolbtnSave
             // 
-            this.toolbtnAlgo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolbtnAlgo.Name = "toolbtnAlgo";
-            this.toolbtnAlgo.Size = new System.Drawing.Size(32, 22);
-            this.toolbtnAlgo.Text = "New";
-            this.toolbtnAlgo.Click += new System.EventHandler(this.toolbtnAlgo_Click);
+            this.toolbtnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolbtnSave.Name = "toolbtnSave";
+            this.toolbtnSave.Size = new System.Drawing.Size(35, 22);
+            this.toolbtnSave.Text = "Save";
+            this.toolbtnSave.Click += new System.EventHandler(this.toolbtnSave_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "txt files|*.txt";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 262);
+            this.ClientSize = new System.Drawing.Size(591, 262);
             this.Controls.Add(this.ZoneHolder);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStrip1);
@@ -209,6 +224,8 @@
         private System.Windows.Forms.Panel ZoneHolder;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripButton toolbtnAlgo;
+        private System.Windows.Forms.ToolStripButton toolbtnSave;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
     }
 }

@@ -30,9 +30,9 @@ namespace Cocon
             OptionRows = (int)RowsValues[0];
             toollabelCount.Text = "Count: 0";
             openFileDialog1.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            saveFileDialog1.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             DoubleBuffered = true;
             ZoneSize = new Size(Zone.Size.Width, Zone.Size.Height);
-
         }
         const string RowMajor = "RowMajorDrawing";
         const string ColMajor = "ColMajorDrawing";
@@ -80,30 +80,29 @@ namespace Cocon
                 g.FillRectangle(new SolidBrush(Color.White), 0, 0, ZoneSize.Width, ZoneSize.Height);
                 g.DrawImage(bmp, 0, 0);
                 g.Dispose();
-
             }
         }
 
-
         private void toolbtnOpen_Click(object sender, EventArgs e)
         {
+            if (openFileDialog1.ShowDialog() != DialogResult.OK)
+                return;            
             List<Tuple<Lab, Rgb>> oldlabs = new List<Tuple<Lab, Rgb>>(Labs);
             string oldfilename = openFileDialog1.FileName;
+            bool isexcelformat = openFileDialog1.FileName.EndsWith(".xlsx");
             Excel.Application xlApp = null;
             Excel.Workbook xlWorkbook = null;
             Excel._Worksheet xlWorksheet = null;
-            Excel.Range xlRange = null;
+            Excel.Range xlRange = null;            
             try
             {
-
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                Labs.Clear();                    
+                if (isexcelformat)
                 {
                     xlApp = new Excel.Application();
                     xlWorkbook = xlApp.Workbooks.Open(openFileDialog1.FileName, 0, true, 5, "", "", true, Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
                     xlWorksheet = (Excel._Worksheet)xlWorkbook.Sheets[1];
                     xlRange = xlWorksheet.UsedRange;
-                    Labs.Clear();
-                    //CultureInfo cult = new CultureInfo("ru-RU");
                     for (int r = 2; r <= xlRange.Rows.Count; r++)
                     {
                         double l = (double)(xlRange.Cells[r, 1] as Excel.Range).Value2;
@@ -111,8 +110,24 @@ namespace Cocon
                         double b = (double)(xlRange.Cells[r, 3] as Excel.Range).Value2;
                         Labs.Add(new Tuple<Lab, Rgb>(new Lab { L = l, A = a, B = b }, new Rgb { R = 0, G = 0, B = 0 }));
                     }
-                    Generated = false;
                 }
+                else
+                {
+                    string[] lines = File.ReadAllLines(openFileDialog1.FileName, Encoding.Default);
+                    CultureInfo cult = new CultureInfo("ru-RU");
+                    foreach (var line in lines.Where(x => !string.IsNullOrWhiteSpace(x)))
+                    {
+                        double l = 0;
+                        double a = 0;
+                        double b = 0;
+                        string[] tokens = line.Split(new char[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                        double.TryParse(tokens[0], NumberStyles.Float, cult, out l);
+                        double.TryParse(tokens[1], NumberStyles.Float, cult, out a);
+                        double.TryParse(tokens[2], NumberStyles.Float, cult, out b);
+                        Labs.Add(new Tuple<Lab, Rgb>(new Lab { L = l, A = a, B = b }, new Rgb { R = 0, G = 0, B = 0 }));
+                    }
+                }
+                Generated = false;
             }
             catch (Exception ex)
             {
@@ -122,14 +137,17 @@ namespace Cocon
             }
             finally
             {
-                Marshal.FinalReleaseComObject(xlRange);
-                Marshal.FinalReleaseComObject(xlWorksheet);
-                xlWorkbook.Close(Type.Missing, Type.Missing, Type.Missing);
-                Marshal.FinalReleaseComObject(xlWorkbook);
-                xlApp.Quit();
-                Marshal.FinalReleaseComObject(xlApp);
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
+                if (isexcelformat)
+                {
+                    Marshal.FinalReleaseComObject(xlRange);
+                    Marshal.FinalReleaseComObject(xlWorksheet);
+                    xlWorkbook.Close(Type.Missing, Type.Missing, Type.Missing);
+                    Marshal.FinalReleaseComObject(xlWorkbook);
+                    xlApp.Quit();
+                    Marshal.FinalReleaseComObject(xlApp);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                }
             }
             toollabelCount.Text = "Count: " + Labs.Count.ToString();
         }
@@ -168,7 +186,7 @@ namespace Cocon
                 {
                     int L = Convert.ToInt32(Labs[labidx].Item1.L);
                     int a = Convert.ToInt32(Labs[labidx].Item1.A);
-                    int b = Convert.ToInt32(Labs[labidx].Item1.B);                 
+                    int b = Convert.ToInt32(Labs[labidx].Item1.B);
                     LAB2RGB(L, a, b, ref R, ref G, ref B);
                 }
                 else
@@ -181,7 +199,7 @@ namespace Cocon
                 Labs[labidx].Item2.R = R;
                 Labs[labidx].Item2.G = G;
                 Labs[labidx].Item2.B = B;
-                
+
                 Brush brush = new SolidBrush(Color.FromArgb(R, G, B));
                 int x = vert ? labidx / rows : labidx % cols;
                 int y = vert ? labidx % rows : labidx / cols;
@@ -189,7 +207,7 @@ namespace Cocon
             }
             Zone.Image = bmp;
             new Bitmap(1, 1)
-            //bmp
+                //bmp
                 .Save(Path.ChangeExtension(openFileDialog1.FileName, ".bmp"), ImageFormat.Bmp);
             Generated = true;
         }
@@ -225,6 +243,7 @@ namespace Cocon
             statusStrip1.Items[0].Text = string.Format("L:{0} A:{1} B:{2} R:{3} G:{4} B:{5}", lab.L, lab.A, lab.B, rgb.R, rgb.G, rgb.B);
         }
 
+        // http://stackoverflow.com/questions/7880264/convert-lab-color-to-rgb
         void LAB2RGB(int L, int a, int b, ref int R, ref int G, ref int B)
         {
             double X, Y, Z, fX, fY, fZ;
@@ -263,8 +282,6 @@ namespace Cocon
             R = (int)(RR < 0 ? 0 : RR > 255 ? 255 : RR);
             G = (int)(GG < 0 ? 0 : GG > 255 ? 255 : GG);
             B = (int)(BB < 0 ? 0 : BB > 255 ? 255 : BB);
-
-            //printf("Lab=(%f,%f,%f) ==> RGB(%f,%f,%f)\n",L,a,b,*R,*G,*B);
         }
 
         private void toolbtnAlgo_Click(object sender, EventArgs e)
@@ -275,5 +292,16 @@ namespace Cocon
                 toolbtnAlgo.Text = AlgoNew;
         }
 
+        private void toolbtnSave_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() != DialogResult.OK)
+                return;
+            File.WriteAllLines(
+                saveFileDialog1.FileName,
+                Labs.Select(x => string.Join("\t", new string[] { 
+                    x.Item1.L.ToString(), x.Item1.A.ToString(), x.Item1.B.ToString(), 
+                    x.Item2.R.ToString(), x.Item2.G.ToString(), x.Item2.B.ToString() })),
+                Encoding.Default);
+        }
     }
 }
